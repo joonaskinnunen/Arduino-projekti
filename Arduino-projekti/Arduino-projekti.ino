@@ -1,3 +1,6 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+// Initialize variables for pins
 int waterPumpPin = 1;
 int waterLevelPin = A0;
 int humidityPin = A1;
@@ -14,7 +17,7 @@ int getHumidity() {
   return sensorValue;
 }
 
-//
+// Function to start water pump
 void startWaterPump() {
   // Wait 12h before starting water pump
   delay(4320000);
@@ -29,12 +32,22 @@ void startWaterPump() {
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
+  // Set pin 13 to output mode for speaker
   pinMode(13, OUTPUT);
+  lcd.begin(16, 2);
+  lcd.print("Veden maara: ");
+  lcd.setCursor(0, 1);
+  lcd.print("Kosteus: ");
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
-  Serial.println(getWaterLevel());
+  // print values to lcd
+  lcd.setCursor(12, 0);
+  lcd.print(getWaterLevel());
+  lcd.setCursor(12, 1);
+  lcd.print(getHumidity());
+  // Play tone if water level drops
   if (getWaterLevel() < 200) {
     tone(13, 1000, 200);
   }
