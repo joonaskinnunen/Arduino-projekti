@@ -20,7 +20,7 @@ int getHumidity() {
 // Function to start water pump
 void startWaterPump() {
   // Wait 12h before starting water pump
-  delay(4320000);
+  delay(43200000);
   digitalWrite(waterPumpPin, HIGH);
   delay(10000);
   digitalWrite(waterPumpPin, LOW);
