@@ -1,8 +1,10 @@
 Hydromat Dripper
 
 OAMK
+
 Joonas Kinnunen, Esa Tervonen, Tomi Uosukainen TVT20KMO 
-Tieto- ja viestintätekniikka, Ohjelmistokehityksenkoulutusohjelma
+Tieto- ja viestintätekniikka, Ohjelmistokehityksen koulutusohjelma
+
 Ohjelmoinnin sovellusprojekti
 
 Esittely:
