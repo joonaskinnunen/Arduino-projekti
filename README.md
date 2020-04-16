@@ -22,6 +22,6 @@ Suunnittelimme, että mikäli aika riittää lisäämme LCD-näytön joka näytt
 mullassa/maaperässä.
 
 **Ohjaus:**
- - Anturit ovat kytkettynä Arduino mikrokontrolleriin.
- - Mikrokontrolleria ohjataan ohjelmalla, joka on toteutettu C-ohjelmointikielellä. 
+ - Anturit ovat kytkettynä **_Arduino mikrokontrolleriin._**
+ - Mikrokontrolleria ohjataan ohjelmalla, joka on toteutettu **_C-ohjelmointikielellä._** 
  - Päälle kytkettynä laite toimii täysin automaattisesti, pois lukien vesisäiliön täyttö.
