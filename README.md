@@ -1,8 +1,9 @@
 # Hydromat Dripper
 
-OAMK
+## OAMK
 
-Joonas Kinnunen, Esa Tervonen, Tomi Uosukainen TVT20KMO 
+Joonas Kinnunen, Esa Tervonen, Tomi Uosukainen TVT20KMO
+
 Tieto- ja viestintätekniikka, Ohjelmistokehityksen koulutusohjelma
 
 Ohjelmoinnin sovellusprojekti
