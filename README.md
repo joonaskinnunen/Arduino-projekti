@@ -6,7 +6,7 @@ Joonas Kinnunen, Esa Tervonen, Tomi Uosukainen TVT20KMO
 
 Tieto- ja viestintätekniikka, Ohjelmistokehityksen koulutusohjelma
 
-Ohjelmoinnin sovellusprojekti
+### Ohjelmoinnin sovellusprojekti
 
 Esittely:
 Projektin tavoitteena oli rakentaa automaattinen kastelujärjestelmä esim. pienelle huonekasville.
