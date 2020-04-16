@@ -8,7 +8,7 @@ Tieto- ja viestintätekniikka, Ohjelmistokehityksen koulutusohjelma
 
 ### Ohjelmoinnin sovellusprojekti
 
-Esittely:
+**Esittely:**
 Projektin tavoitteena oli rakentaa automaattinen kastelujärjestelmä esim. pienelle huonekasville.
 
 Tavoite:
