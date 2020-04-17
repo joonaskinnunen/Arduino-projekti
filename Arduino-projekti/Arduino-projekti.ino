@@ -32,7 +32,7 @@ void startWaterPump() {
   #if DEBUG
     Serial.println("Water pump started");
   #endif
-  delay(3000);
+  delay(2000);
   digitalWrite(waterPumpPin, LOW);
   #if DEBUG
     Serial.println("Water pump turned off");
@@ -57,30 +57,35 @@ void loop() {
   // Initialize variables for sensor values
   static int waterLevel = getWaterLevel(), humidity = getHumidity();
   
-  // Clear screen if water level or humidity is below 100
-  if (getWaterLevel() < 100 || getHumidity() < 100) {
-    lcd.clear();
-  }
-  
   // Update the values of the variables if the values of the sensors change enough. This prevents the screen from flashing unnecessarily and the display values are easier to read.
   if(getWaterLevel() < waterLevel - 10 || getWaterLevel() > waterLevel + 10) {
     waterLevel = getWaterLevel();
+    lcd.setCursor(13, 0);
+    lcd.print("   ");
+    lcd.setCursor(9, 1);
+    lcd.print("   ");
   }
 
   if(getHumidity() < humidity - 10 || getHumidity() > humidity + 10) {
     humidity = getHumidity();
+    lcd.setCursor(7, 0);
+    lcd.print("    ");
+    lcd.setCursor(10, 1);
+    lcd.print("    ");
   }
 
   // print values to lcd
   lcd.setCursor(0, 0);
-  lcd.print("Veden maara: ");
-  lcd.print(waterLevel);
+  lcd.print("Water: ");
+  lcd.print((float)waterLevel / 630 * 100, 0);
+  lcd.print("%");
   lcd.setCursor(0, 1);
-  lcd.print("Kosteus: ");
-  lcd.print(humidity);
+  lcd.print("Moisture: ");
+  lcd.print((float)humidity / 630 * 100, 0);
+  lcd.print("%");
 
   // Play tone if water level drops
-  if (waterLevel < 300) {
+  if (waterLevel < 200) {
     #if DEBUG
       Serial.println("Water level too low. Playing tone");
     #endif
@@ -88,7 +93,7 @@ void loop() {
   }
 
   // Start water pump is humidity is too low
-  if (humidity < 200) {
+  if (humidity < 120) {
     #if DEBUG
       Serial.println("Humidity too low. Starting water pump");
     #endif
