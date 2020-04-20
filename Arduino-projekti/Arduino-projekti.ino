@@ -89,7 +89,18 @@ void loop() {
     #if DEBUG
       Serial.println("Water level too low. Playing tone");
     #endif
-    tone(13, 1000, 200);
+    tone(13, 880, 300);
+    delay(450);
+  tone(13, 784, 300);
+    delay(450);
+   tone(13, 659, 550);
+    delay(1000);
+ tone(13, 880, 150);
+    delay(200);
+  tone(13, 784, 200);
+    delay(450);
+   tone(13, 659, 550);
+    delay(1300);
   }
 
   // Start water pump is humidity is too low
