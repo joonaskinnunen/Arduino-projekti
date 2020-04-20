@@ -85,7 +85,7 @@ void loop() {
   lcd.print("%");
 
   // Play tone if water level drops
-  if (waterLevel < 200) {
+   if (waterLevel < 200) {
     #if DEBUG
       Serial.println("Water level too low. Playing tone");
     #endif
