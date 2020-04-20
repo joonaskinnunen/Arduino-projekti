@@ -11,23 +11,25 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 int waterPumpPin = 8, waterLevelPin = A0, humidityPin = A1;
 
 // Get water level
-int getWaterLevel() {
-  int sensorValue = analogRead(waterLevelPin);
+float getWaterLevel() {
+  float sensorValue = analogRead(waterLevelPin);
 #if DEBUG
   Serial.print("Water level: ");
   Serial.println(sensorValue);
 #endif
-  return sensorValue;
+  float waterLevel = sensorValue / 630 * 100;
+  return waterLevel;
 }
 
 // Get flower pot humidity
-int getHumidity() {
-  int sensorValue = analogRead(humidityPin);
+float getHumidity() {
+  float sensorValue = analogRead(humidityPin);
 #if DEBUG
   Serial.print("Humidity: ");
   Serial.println(sensorValue);
 #endif
-  return sensorValue;
+  float humidity = sensorValue / 630 * 100;
+  return humidity;
 }
 
 // Function to start water pump
@@ -77,6 +79,11 @@ float getHeight()
   return height;
 }
 
+void playTone()
+{
+  tone(13, 1000, 200);
+}
+
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -96,41 +103,27 @@ void setup() {
 // the loop routine runs over and over again forever:
 void loop() {
 
-  // Initialize variables for sensor values
-  static int waterLevel = getWaterLevel(), humidity = getHumidity();
-
-  // Clear screen if water level or humidity is below 100
-  if (getWaterLevel() < 100 || getHumidity() < 100) {
-    lcd.clear();
-  }
-
-  // Update the values of the variables if the values of the sensors change enough. This prevents the screen from flashing unnecessarily and the display values are easier to read.
-  if (getWaterLevel() < waterLevel - 10 || getWaterLevel() > waterLevel + 10) {
-    waterLevel = getWaterLevel();
-  }
-
-  if (getHumidity() < humidity - 10 || getHumidity() > humidity + 10) {
-    humidity = getHumidity();
-  }
-
   // print values to lcd
+  lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Veden maara: ");
-  lcd.print(waterLevel);
+  lcd.print("Water ");
+  lcd.print(getWaterLevel(), 0);
+  lcd.print("%");
   lcd.setCursor(0, 1);
-  lcd.print("Kosteus: ");
-  lcd.print(humidity);
+  lcd.print("Humidity: ");
+  lcd.print(getHumidity(), 0);
+  lcd.print("%");
 
   // Play tone if water level drops
-  if (waterLevel < 300) {
+  if (getWaterLevel() < 30) {
 #if DEBUG
     Serial.println("Water level too low. Playing tone");
 #endif
-    tone(13, 1000, 200);
+    playTone();
   }
 
   // Start water pump is humidity is too low
-  if (humidity < 200) {
+  if (getHumidity() < 20) {
 #if DEBUG
     Serial.println("Humidity too low. Starting water pump");
 #endif
@@ -141,7 +134,7 @@ void loop() {
 
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("Pituus: ");
+  lcd.print("Height: ");
   lcd.print(getHeight());
   lcd.setCursor(14,0);
   lcd.print("cm");
