@@ -65,7 +65,7 @@ void loop() {
     lcd.setCursor(9, 1);
     lcd.print("   ");
   }
-
+    
   if(getHumidity() < humidity - 10 || getHumidity() > humidity + 10) {
     humidity = getHumidity();
     lcd.setCursor(7, 0);
@@ -84,8 +84,20 @@ void loop() {
   lcd.print((float)humidity / 630 * 100, 0);
   lcd.print("%");
 
-  // Play tone if water level drops
-   if (waterLevel < 200) {
+  // Start water pump is humidity is too low
+  if (humidity < 120) {
+    #if DEBUG
+      Serial.println("Humidity too low. Starting water pump");
+    #endif
+    startWaterPump();
+  }
+
+  delay(1);        // delay in between reads for stability
+}
+
+  //Function for playing tone if water level drops
+  void startSpeaker() {
+   if (waterLevel < 200) 
     #if DEBUG
       Serial.println("Water level too low. Playing tone");
     #endif
@@ -102,14 +114,3 @@ void loop() {
     tone(13, 659, 550);
      delay(1300);
   }
-
-  // Start water pump is humidity is too low
-  if (humidity < 120) {
-    #if DEBUG
-      Serial.println("Humidity too low. Starting water pump");
-    #endif
-    startWaterPump();
-  }
-
-  delay(1);        // delay in between reads for stability
-}
