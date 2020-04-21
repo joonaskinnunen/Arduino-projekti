@@ -38,6 +38,25 @@ void startWaterPump() {
     Serial.println("Water pump turned off");
   #endif
 }
+  //Function for playing tone if water level drops
+ void startSpeaker() {
+   if (waterLevel < 200) 
+    #if DEBUG
+      Serial.println("Water level too low. Playing tone");
+    #endif
+    tone(13, 880, 300);
+     delay(450);
+    tone(13, 784, 300);
+     delay(450);
+    tone(13, 659, 550);
+     delay(1000);
+    tone(13, 880, 150);
+     delay(200);
+    tone(13, 784, 200);
+     delay(450);
+    tone(13, 659, 550);
+     delay(1300);
+  }
 
 // the setup routine runs once when you press reset:
 void setup() {
@@ -94,23 +113,3 @@ void loop() {
 
   delay(1);        // delay in between reads for stability
 }
-
-  //Function for playing tone if water level drops
-  void startSpeaker() {
-   if (waterLevel < 200) 
-    #if DEBUG
-      Serial.println("Water level too low. Playing tone");
-    #endif
-    tone(13, 880, 300);
-     delay(450);
-    tone(13, 784, 300);
-     delay(450);
-    tone(13, 659, 550);
-     delay(1000);
-    tone(13, 880, 150);
-     delay(200);
-    tone(13, 784, 200);
-     delay(450);
-    tone(13, 659, 550);
-     delay(1300);
-  }
