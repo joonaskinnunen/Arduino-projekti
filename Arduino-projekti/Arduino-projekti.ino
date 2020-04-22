@@ -84,10 +84,6 @@ void loop() {
     lcd.setCursor(9, 1);
     lcd.print("   ");
   }
-  
-   if (waterLevel < 200) {
-    startSpeaker();
-  }
     
   if(getHumidity() < humidity - 10 || getHumidity() > humidity + 10) {
     humidity = getHumidity();
@@ -113,6 +109,11 @@ void loop() {
       Serial.println("Humidity too low. Starting water pump");
     #endif
     startWaterPump();
+  }
+  
+  //Play tone if water level is too low
+  if (waterLevel < 200) {
+    startSpeaker();
   }
 
   delay(1);        // delay in between reads for stability
