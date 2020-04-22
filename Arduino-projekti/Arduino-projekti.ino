@@ -40,7 +40,6 @@ void startWaterPump() {
 }
   //Function for playing tone if water level drops
  void startSpeaker() {
-   if (waterLevel < 200) 
     #if DEBUG
       Serial.println("Water level too low. Playing tone");
     #endif
@@ -73,6 +72,7 @@ void setup() {
 // the loop routine runs over and over again forever:
 void loop() {
   
+    
   // Initialize variables for sensor values
   static int waterLevel = getWaterLevel(), humidity = getHumidity();
   
@@ -83,6 +83,10 @@ void loop() {
     lcd.print("   ");
     lcd.setCursor(9, 1);
     lcd.print("   ");
+  }
+  
+   if (waterLevel < 200) {
+    startSpeaker();
   }
     
   if(getHumidity() < humidity - 10 || getHumidity() > humidity + 10) {
