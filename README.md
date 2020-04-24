@@ -25,3 +25,6 @@ mullassa/maaperässä.
  - Anturit ovat kytkettynä **_Arduino mikrokontrolleriin._**
  - Mikrokontrolleria ohjataan ohjelmalla, joka on toteutettu **_C-ohjelmointikielellä._** 
  - Päälle kytkettynä laite toimii täysin automaattisesti, pois lukien vesisäiliön täyttö.
+
+**Tulokset:**
+ - Projektin tulokset ovat katsottavissa projektin aikana syntyneestä projektijulisteesta: https://oamk-my.sharepoint.com/:p:/g/personal/c9kijo00_students_oamk_fi/EQe3kAuQjolEu58S52Yr1GsBWK4Qo6uKNNnWe0oQuEtA2w?e=xtb9Ac
